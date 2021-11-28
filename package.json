@@ -1,0 +1,26 @@
+{
+  "name": "alphabet-server",
+  "version": "0.0.1",
+  "description": "server for Alphabet app",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index",
+    "server": "nodemon index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/artschedrov/alphabet-server.git"
+  },
+  "author": "Schedrov.A",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/artschedrov/alphabet-server/issues"
+  },
+  "homepage": "https://github.com/artschedrov/alphabet-server#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
