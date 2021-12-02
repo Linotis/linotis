@@ -1,7 +1,7 @@
 {
-  "name": "alphabet-server",
+  "name": "linotis-server",
   "version": "0.0.1",
-  "description": "server for Alphabet app",
+  "description": "server for Linotis app",
   "main": "index.js",
   "scripts": {
     "start": "node index",
