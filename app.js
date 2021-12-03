@@ -3,6 +3,13 @@ const bodyParser = require('body-parser');
 const authRoutes = require('./routes/auth');
 const collectionsRoutes = require('./routes/collections');
 const statisticsRoutes = require('./routes/statistics');
+const keys = require('./config/keys');
+
+const mongoose = require('mongoose');
+
+mongoose.connect(keys.mongoURI)
+  .then(() => console.log('Mongo connected'))
+  .catch(error => console.log(error));
 
 const app = express();
 
