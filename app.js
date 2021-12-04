@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const passport = require('passport');
 const authRoutes = require('./routes/auth');
 const collectionsRoutes = require('./routes/collections');
 const statisticsRoutes = require('./routes/statistics');
@@ -12,6 +13,9 @@ mongoose.connect(keys.mongoURI)
   .catch(error => console.log(error));
 
 const app = express();
+
+app.use(passport.initialize());
+require('./middleware/passport')(passport);
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
