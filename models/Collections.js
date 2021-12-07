@@ -1,26 +1,24 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+const collectionItemSchema = new Schema({
+  name: {
+    type: String
+  },
+  imgSrc: {
+    type: String,
+    default: ''
+  }
+});
+
 const collectionSchema = new Schema({
   name: {
     type: String
   },
-  id: {
-    type: Number
-  },
-  list: [
-    {
-      id: {
-        type: Number
-      },
-      name: {
-        type: Number
-      },
-      imgSrc: {
-        type: String
-      }
-    }
-  ]
+  list: [collectionItemSchema]
 });
 
-module.exports = mongoose.model('collections', collectionSchema);
+const CollectionItem = mongoose.model('collectionItem', collectionItemSchema);
+const Collection = mongoose.model('collection', collectionSchema);
+
+module.exports = { CollectionItem, Collection };
