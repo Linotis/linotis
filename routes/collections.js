@@ -3,10 +3,8 @@ const router = express.Router();
 const passport = require('passport');
 const controller = require('../controllers/collection-controller');
 
-router.get('/', passport.authenticate('jwt', {session: false}), controller.getAll);
-router.get('/:id', controller.getById);
-router.post('/:id', controller.create);
-router.delete('/:id', controller.remove);
-router.patch('/:id', controller.update);
+router.get('/', controller.getAllCollections);
+router.get('/:id', controller.getCollectionById);
+router.post('/', controller.createCollection);
 
 module.exports = router;
