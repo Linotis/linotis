@@ -11,5 +11,6 @@ router.delete('/:id', collectionController.deleteCollectionById);
 router.patch('/:id', collectionController.updateCollectionById);
 
 router.post('/scribble/create', scribbleController.createScribble);
-
+router.get('/scribble/:id', scribbleController.getScribbleById);
+router.delete('/scribble/:id', scribbleController.deleteScribbleById);
 module.exports = router;

@@ -1,11 +1,12 @@
 const Collection = require('../models/Collection');
+const errorHandler = require('../utils/errorHandler');
 
 module.exports.getAllCollections = async function(req, res) {
   try {
     const collections = await Collection.find();
     res.status(200).json(collections);
   } catch(e) {
-    console.log(e);
+    errorHandler(res, e);
   }   
 };
 
@@ -14,7 +15,7 @@ module.exports.getCollectionById = async function(req, res) {
     const collection = await Collection.findById(req.params.id).populate('scribbles');
     res.status(200).json(collection);
   } catch(e) {
-    console.log(e);
+    errorHandler(res, e);
   }
 };
 
@@ -25,7 +26,7 @@ module.exports.createCollection = async function(req, res) {
     }).save();
     res.status(201).json(collection);
   } catch(e) {
-    console.log(e);
+    errorHandler(res, e);
   }
 };
 
@@ -42,7 +43,7 @@ module.exports.updateCollectionById = async function(req, res) {
     );
     res.status(201).json(collection);
   } catch(e){
-    console.log(e);
+    errorHandler(res, e);
   }
 }
 
@@ -53,6 +54,6 @@ module.exports.deleteCollectionById = async function(req, res) {
       message: 'Collection delete'
     });
   } catch(e) {
-    console.log(e);
+    errorHandler(res, e);
   }
 }
