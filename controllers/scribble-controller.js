@@ -1,6 +1,15 @@
 const Collection = require('../models/Collection');
 const Scribble = require('../models/Scribble');
 
+module.exports.getScribbleById = async function(req, res) {
+  try {
+    const scribble = await Scribble.findById(req.params.id);
+    res.status(200).json(scribble);
+  } catch(e) {
+    errorHandler(res, e);
+  }
+};
+
 module.exports.createScribble = async function(req, res) {
   try {
     const scribble = await new Scribble({
@@ -13,8 +22,19 @@ module.exports.createScribble = async function(req, res) {
     collectionById.scribbles.push(scribble);
     await collectionById.save();
     
-    res.status(200).json(collectionById);
+    res.status(201).json(collectionById);
   } catch(e) {
-    console.log(e);
+    errorHandler(res, e);
+  }
+};
+
+module.exports.deleteScribbleById = async function(req, res) {
+  try {
+    const scribble = await Scribble.remove({_id: req.params.id});
+    res.status(200).json({
+      message: 'Scribble delete'
+    });
+  } catch(e) {
+    errorHandler(res, e);
   }
 }
