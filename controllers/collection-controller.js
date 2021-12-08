@@ -1,4 +1,4 @@
-const {Collection, CollectionItem} = require('../models/Collections');
+const Collection = require('../models/Collection');
 
 module.exports.getAllCollections = async function(req, res) {
   try {
@@ -11,7 +11,7 @@ module.exports.getAllCollections = async function(req, res) {
 
 module.exports.getCollectionById = async function(req, res) {
   try {
-    const collection = await Collection.findById(req.params.id);
+    const collection = await Collection.findById(req.params.id).populate('scribbles');
     res.status(200).json(collection);
   } catch(e) {
     console.log(e);
@@ -22,10 +22,36 @@ module.exports.createCollection = async function(req, res) {
   try {
     const collection = await new Collection({
       name: req.body.name,
-      list: req.body.list
     }).save();
-    
     res.status(201).json(collection);
+  } catch(e) {
+    console.log(e);
+  }
+};
+
+module.exports.updateCollectionById = async function(req, res) {
+  const updated = {
+    name: req.body.name
+  };
+
+  try{
+    const collection = await Collection.findOneAndUpdate(
+      {_id: req.params.id},
+      {$set: updated},
+      {new: true}
+    );
+    res.status(201).json(collection);
+  } catch(e){
+    console.log(e);
+  }
+}
+
+module.exports.deleteCollectionById = async function(req, res) {
+  try {
+    const collection = await Collection.remove({_id:req.params.id});
+    res.status(200).json({
+      message: 'Collection delete'
+    });
   } catch(e) {
     console.log(e);
   }

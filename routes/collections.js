@@ -1,10 +1,15 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
-const controller = require('../controllers/collection-controller');
+const collectionController = require('../controllers/collection-controller');
+const scribbleController = require('../controllers/scribble-controller');
 
-router.get('/', controller.getAllCollections);
-router.get('/:id', controller.getCollectionById);
-router.post('/', controller.createCollection);
+router.get('/', collectionController.getAllCollections);
+router.get('/:id', collectionController.getCollectionById);
+router.post('/', collectionController.createCollection);
+router.delete('/:id', collectionController.deleteCollectionById);
+router.patch('/:id', collectionController.updateCollectionById);
+
+router.post('/scribble/create', scribbleController.createScribble);
 
 module.exports = router;
