@@ -28,6 +28,23 @@ module.exports.createScribble = async function(req, res) {
   }
 };
 
+module.exports.updateScribbleById = async function(req, res) {
+  const updated = {
+    title: req.body.title
+  };
+
+  try {
+    const scribble = await Scribble.findOneAndUpdate(
+      {_id: req.params.id},
+      {$set: updated},
+      {new: true}
+    );
+    res.status(201).json(scribble);
+  } catch(e) {
+    errorHandler(res, e);
+  }
+};
+
 module.exports.deleteScribbleById = async function(req, res) {
   try {
     const scribble = await Scribble.remove({_id: req.params.id});
@@ -37,4 +54,4 @@ module.exports.deleteScribbleById = async function(req, res) {
   } catch(e) {
     errorHandler(res, e);
   }
-}
+};
