@@ -1,5 +1,6 @@
 const Collection = require('../models/Collection');
 const Scribble = require('../models/Scribble');
+const errorHandler = require('../utils/errorHandler');
 
 module.exports.getScribbleById = async function(req, res) {
   try {
@@ -11,17 +12,18 @@ module.exports.getScribbleById = async function(req, res) {
 };
 
 module.exports.createScribble = async function(req, res) {
-  try {
-    const scribble = await new Scribble({
-      title: req.body.title,
-      imgSrc: req.body.imgSrc,
-      collectionId: req.body.collectionId
-    }).save();
+  const scribble = new Scribble({
+    title: req.body.title,
+    imgSrc: req.file ? req.file.path : '',
+    collectionId: req.body.collectionId
+  });
 
+  try {
+    await scribble.save();
     const collectionById = await Collection.findById(req.body.collectionId);
     collectionById.scribbles.push(scribble);
     await collectionById.save();
-    
+
     res.status(201).json(collectionById);
   } catch(e) {
     errorHandler(res, e);
@@ -31,6 +33,10 @@ module.exports.createScribble = async function(req, res) {
 module.exports.updateScribbleById = async function(req, res) {
   const updated = {
     title: req.body.title
+  };
+
+  if(req.file) {
+    updated.imgSrc = req.file.path;
   };
 
   try {
