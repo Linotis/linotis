@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const scribbleSchema = new Schema({
   title: {
     type: String,
-    required: '{PATH} is required!'
+    required: true
   },
   imgSrc: {
     type: String,
