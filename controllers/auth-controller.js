@@ -1,6 +1,5 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const keys = require('../config/keys');
 const errorHandler = require('../utils/errorHandler');
 
 const User = require('../models/User');
@@ -14,7 +13,7 @@ module.exports.login = async function(req, res) {
       const token = jwt.sign({
         email: candidate.email,
         userId: candidate._id
-      }, keys.jwt, {expiresIn: 60 * 60});
+      }, process.env.JWT, {expiresIn: 60 * 60});
       res.status(200).json({
         token: `Bearer ${token}`
       })
