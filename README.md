@@ -1,4 +1,4 @@
-# linotis
+# Linotis
 ## Introduction
 ## Features
 ## License
