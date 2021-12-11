@@ -1,57 +1,23 @@
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
 const errorHandler = require('../utils/errorHandler');
-
-const User = require('../models/User');
+const UserService = require('../services/user.service');
 
 module.exports.login = async function(req, res) {
-  const candidate = await User.findOne({email: req.body.email});
+  try {
+    const {email, password} = req.body;
+    const token = await UserService.loginUser(email, password);
+    return res.status(200).json({token: `Bearer ${token}`});
 
-  if(candidate) {
-    const passwordResult = bcrypt.compareSync(req.body.password, candidate.password);
-    if(passwordResult) {
-      const token = jwt.sign({
-        email: candidate.email,
-        userId: candidate._id
-      }, process.env.JWT, {expiresIn: 60 * 60});
-      res.status(200).json({
-        token: `Bearer ${token}`
-      })
-    } else {
-      res.status(401).json({
-        message: 'Invalid password'
-      });
-    }
-  } else {
-    res.status(404).json({
-      message: 'User not found'
-    });
+  } catch(e) {
+    errorHandler(res, e);
   }
 };
 
 module.exports.register = async function(req, res) {
-  const candidate = await User.findOne({email: req.body.email});
-  
-  if(candidate) {
-    res.status(409).json({
-      message: 'This user already exists'
-    });
-  } else {
-    const salt = bcrypt.genSaltSync(10);
-    const password = req.body.password;
-    const user = new User({
-      email: req.body.email,
-      password: bcrypt.hashSync(password, salt),
-      role: req.body.role
-    });
-
-    try {
-      await user.save();
-      res.status(201).json({
-        message: 'Ok'
-      });
-    } catch(e) {
-      errorHandler(res, e);
-    }
+  try {
+    const {email, password, role} = req.body;
+    await UserService.registerUser(email, password, role);
+    return res.status(201).json({ message: 'Ok'});
+  } catch(e) {
+    errorHandler(res, e);
   }  
 };
