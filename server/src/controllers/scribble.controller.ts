@@ -19,6 +19,24 @@ export default class ScribbleController {
     .catch((err) => res.status(500).json(err.message));   
   }
 
+  async update(req: Request, res: Response) {
+    const{id} = req.params;
 
+    const updated = {title: req.body.title};
 
+    // if(req.file) {
+    //   updated.imgSrc = req.file.path;
+    // };
+
+    return this.scribbleService.updateScribble(id, updated)
+    .then(value => res.status(201).json(value))
+    .catch((err) => res.status(500).json(err.message)); 
+  }
+
+  async delete(req: Request, res: Response) {
+    const{id} = req.params;
+    return this.scribbleService.deleteScribble(id)
+    .then(value => res.status(200).json({message: 'Scribble delete'}))
+    .catch((err) => res.status(500).json(err.message));
+  }
 }

@@ -12,5 +12,11 @@ export class ScribbleRoutes {
     app.get('/api/scribble/:id', passport.authenticate('jwt', {session: false}), (req: Request, res: Response) => {
       this.scribbleController.getById(req, res);
     });
+    app.patch('/api/scribble/:id', passport.authenticate('jwt', {session: false}), (req: Request, res: Response) => {
+      this.scribbleController.update(req, res);
+    });
+    app.delete('/api/scribble/:id', passport.authenticate('jwt', {session: false}), (req: Request, res: Response) => {
+      this.scribbleController.delete(req, res);
+    });
   }
 }

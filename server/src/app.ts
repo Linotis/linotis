@@ -12,7 +12,6 @@ import checkPassport from './middleware/passport';
 
 
 class App {
-
   public app: express.Application;
   public mongoURL: string = process.env.DB_URL!;
   private userRoutes: UserRoutes = new UserRoutes();
@@ -39,7 +38,9 @@ class App {
   };
 
   private mongoSetup(): void {
-    mongoose.connect(this.mongoURL).then(() => console.log('Mongo connected')).catch(error => console.log(error));
+    mongoose.connect(this.mongoURL)
+    .then(() => console.log('Mongo connected'))
+    .catch(error => console.log(error));
   }
 }
 

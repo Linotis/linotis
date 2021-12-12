@@ -20,4 +20,18 @@ export default class ScribbleService {
     await collectionById.save();
     return scribble;
   }
+
+  public async updateScribble(id: string, updated: object) {
+    const scribble = await Scribble.findOneAndUpdate(
+      {_id: id},
+      {$set: updated},
+      {new: true}
+    );
+    return scribble;
+  }
+
+  public async deleteScribble(id: string) {
+    const scribble = await Scribble.remove({_id: id});
+    return scribble;
+  }
 }

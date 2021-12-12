@@ -5,8 +5,8 @@
   "main": "dist/index.js",
   "scripts": {
     "start": "node index",
-    "server": "nodemon index",
-    "dev": "tsc && nodemon --config nodemon.json dist/index"
+    "server": "nodemon --config nodemon.json",
+    "dev": "tsc && nodemon --config nodemon.json src/index.ts"
   },
   "repository": {
     "type": "git",
