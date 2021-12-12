@@ -33,8 +33,10 @@
     "passport-jwt": "^4.0.0"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
     "@types/express": "^4.17.13",
     "@types/node": "^16.11.12",
+    "@types/passport-jwt": "^3.0.6",
     "mockingoose": "^2.15.2",
     "nodemon": "^2.0.15",
     "ts-node": "^10.4.0",
