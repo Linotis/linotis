@@ -1,5 +1,5 @@
-const Collection = require('../models/Collection');
-const errorHandler = require('../utils/errorHandler');
+const Collection = require('../server/models/Collection');
+const errorHandler = require('../src/utils/errorHandler');
 
 module.exports.getAllCollections = async function(req, res) {
   try {
