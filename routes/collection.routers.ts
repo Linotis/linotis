@@ -13,5 +13,8 @@ export class CollectionRouters {
     app.get('/api/collections', passport.authenticate('jwt', {session: false}), (req: Request, res: Response) => {
       this.collectionController.getAll(req, res);
     });
+    app.get('/api/collection/:id', passport.authenticate('jwt', {session: false}), (req: Request, res: Response) => {
+      this.collectionController.getById(req, res);
+    });
   }
 }
