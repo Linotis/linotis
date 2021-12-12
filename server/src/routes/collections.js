@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
-const upload = require('../middleware/upload');
-const collectionController = require('../controllers/collection-controller');
-const scribbleController = require('../controllers/scribble-controller');
+const upload = require('../../middleware/upload');
+const collectionController = require('../../controllers/collection-controller');
+const scribbleController = require('../../controllers/scribble-controller');
 
 router.get('/', passport.authenticate('jwt', {session: false}), collectionController.getAllCollections);
 router.get('/:id', passport.authenticate('jwt', {session: false}), collectionController.getCollectionById);

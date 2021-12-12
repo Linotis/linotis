@@ -2,11 +2,11 @@
   "name": "linotis-server",
   "version": "0.0.1",
   "description": "server for Linotis app",
-  "main": "./dist/index.js",
+  "main": "dist/index.js",
   "scripts": {
     "start": "node index",
     "server": "nodemon index",
-    "dev": "tsc && nodemon ./dist/index"
+    "dev": "nodemon --config nodemon.json src/index.ts"
   },
   "repository": {
     "type": "git",

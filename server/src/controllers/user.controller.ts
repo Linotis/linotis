@@ -1,4 +1,3 @@
-
 import { Request, Response } from "express";
 import UserService from '../services/user.service';
 
@@ -17,8 +16,8 @@ export default class UserController {
   async register(req: Request, res: Response) {
     try {
       const {email, password, role} = req.body;
-      const user = this.userService.createUser(email, password, role);
+      const user = await this.userService.createUser(email, password, role);
       return res.status(201).json({message: 'Ok'});
     } catch(e) {}
   }  
-}
+};

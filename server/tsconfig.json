@@ -10,13 +10,12 @@
     "moduleResolution": "node",
     "pretty": true,
     "outDir": "./dist",
-    "baseUrl": "./"
+    "baseUrl": "./src"
   },
   "include": [
     "**/*.ts"
   ],
  "exclude": [
     "node_modules",
-    "client"
   ]
 }

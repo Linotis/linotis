@@ -1,6 +1,6 @@
-const Collection = require('../models/Collection');
-const Scribble = require('../models/Scribble');
-const errorHandler = require('../utils/errorHandler');
+const Collection = require('../server/models/Collection');
+const Scribble = require('../server/models/Scribble');
+const errorHandler = require('../src/utils/errorHandler');
 
 module.exports.getScribbleById = async function(req, res) {
   try {
