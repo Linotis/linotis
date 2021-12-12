@@ -10,7 +10,9 @@ export default class UserController {
       const{email, password} = req.body;
       const token = await this.userService.loginUser(email, password);
       return res.status(200).json({token: `Bearer ${token}`});
-    } catch(e) {}
+    } catch(e) {
+      
+    }
   }
 
   async register(req: Request, res: Response) {
