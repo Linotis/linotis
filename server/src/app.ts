@@ -1,11 +1,15 @@
 import 'dotenv/config';
 import express from "express";
+import cors from 'cors';
+import morgan from 'morgan';
 import * as bodyParser from "body-parser";
 import mongoose from 'mongoose';
 import passport from 'passport';
 import {UserRoutes} from './routes/user.routers';
 import {CollectionRouters} from './routes/collection.routers';
+import { ScribbleRoutes } from './routes/scribble.routers';
 import checkPassport from './middleware/passport';
+
 
 class App {
 
@@ -13,6 +17,7 @@ class App {
   public mongoURL: string = process.env.DB_URL!;
   private userRoutes: UserRoutes = new UserRoutes();
   private collectionRoutes: CollectionRouters = new CollectionRouters();
+  private scribbleRoutes: ScribbleRoutes = new ScribbleRoutes();
 
   constructor() {
     this.app = express();
@@ -20,6 +25,7 @@ class App {
     this.mongoSetup();
     this.userRoutes.route(this.app);
     this.collectionRoutes.route(this.app);
+    this.scribbleRoutes.route(this.app);
 
   }
 
@@ -28,6 +34,8 @@ class App {
     this.app.use(bodyParser.json());
     this.app.use(passport.initialize());
     checkPassport(passport);
+    this.app.use(cors());
+    this.app.use(morgan('dev'));
   };
 
   private mongoSetup(): void {

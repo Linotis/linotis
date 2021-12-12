@@ -20,6 +20,8 @@ export default class UserController {
       const {email, password, role} = req.body;
       const user = await this.userService.createUser(email, password, role);
       return res.status(201).json({message: 'Ok'});
-    } catch(e) {}
+    } catch(e) {
+      console.log(e);
+    }
   }  
 };

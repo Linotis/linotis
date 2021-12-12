@@ -7,8 +7,8 @@ const collectionSchema = new Schema({
     type: String
   },
   scribbles: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Scribble'
+    ref: 'Scribble',
+    type: mongoose.Schema.Types.ObjectId
   }]
 });
 

@@ -16,4 +16,18 @@ export default class CollectionService {
     const collection = await collections.create({name: name});
     return collection;
   }
+
+  public async updateCollection(id: string, updated: object) {
+    const collection = await collections.findOneAndUpdate(
+      {_id: id},
+      {$set: updated},
+      {new: true}
+    );
+    return collection;
+  }
+
+  public async deleteCollection(id: string) {
+    const collection = await collections.remove({_id: id});
+    return collection;
+  }
 }

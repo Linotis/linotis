@@ -16,5 +16,11 @@ export class CollectionRouters {
     app.get('/api/collection/:id', passport.authenticate('jwt', {session: false}), (req: Request, res: Response) => {
       this.collectionController.getById(req, res);
     });
+    app.patch('/api/collection/:id', passport.authenticate('jwt', {session: false}), (req: Request, res: Response) => {
+      this.collectionController.update(req, res);
+    });
+    app.delete('/api/collection/:id', passport.authenticate('jwt', {session: false}), (req: Request, res: Response) => {
+      this.collectionController.delete(req, res);
+    });
   }
 }

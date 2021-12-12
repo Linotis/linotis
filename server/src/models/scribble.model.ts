@@ -12,8 +12,8 @@ const scribbleSchema = new Schema({
     default: ''
   },
   collectionId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Collection'
+    ref: 'Collection',
+    type: mongoose.Schema.Types.ObjectId
   }
 });
 
