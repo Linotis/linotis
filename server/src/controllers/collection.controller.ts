@@ -3,8 +3,10 @@ import CollectionService from "../services/collection.service";
 
 export default class CollectionController {
 
-  private collectionService: CollectionService = new CollectionService();
 
+  //private collectionService: CollectionService = new CollectionService();
+  constructor(private collectionService: CollectionService) {}
+  
   async getAll(req: Request, res: Response) {
     return this.collectionService.getCollections()
     .then(value => res.status(200).json(value))
