@@ -13,7 +13,8 @@ export default class ScribbleController {
   }
 
   async create(req: Request, res: Response) {
-    const{title, imgSrc, collectionId} = req.body;
+    let{title, imgSrc, collectionId} = req.body;
+    imgSrc = req.file ? req.file.path : '';
     return this.scribbleService.createScribble(title, imgSrc, collectionId)
     .then(value => res.status(201).json(value))
     .catch((err) => res.status(500).json(err.message));   
@@ -22,11 +23,11 @@ export default class ScribbleController {
   async update(req: Request, res: Response) {
     const{id} = req.params;
 
-    const updated = {title: req.body.title};
+    const updated = {title: req.body.title, imgSrc: req.body.imgSrc};
 
-    // if(req.file) {
-    //   updated.imgSrc = req.file.path;
-    // };
+    if(req.file) {
+      updated.imgSrc = req.file.path;
+    };
 
     return this.scribbleService.updateScribble(id, updated)
     .then(value => res.status(201).json(value))
