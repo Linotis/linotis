@@ -8,7 +8,7 @@ export default class ScribbleService {
     return scribble;
   }
   
-  public async createScribble(title: string, imgSrc: string, collectionId) {
+  public async createScribble(title: string, imgSrc: string, collectionId: any) {
     const scribble = new Scribble({
       title: title,
       imgSrc: imgSrc,

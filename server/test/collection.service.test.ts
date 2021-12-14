@@ -1,6 +1,8 @@
 import { suite, test } from '@testdeck/mocha';
+import { rejects } from 'assert';
 import * as _chai from 'chai';
 import { assert, expect } from 'chai';
+import { resolve } from 'path/posix';
 const chaiaspromised = require('chai-as-promised');
 
 import CollectionService from '../src/services/collection.service';

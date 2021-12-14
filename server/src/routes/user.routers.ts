@@ -1,6 +1,5 @@
 import { Application, Request, Response } from 'express';
 import UserController from '../controllers/user.controller';
-//import passport from 'passport';
 
 export class UserRoutes {
 
