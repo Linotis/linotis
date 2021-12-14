@@ -36,8 +36,4 @@ _chai.expect;
   @test 'Login user return Promise' () {
     assert.instanceOf(this.SUT.loginUser(this.userEmail, this.userPassword), Promise);
   }
-
-  // @test 'init return if !config' () {
-  //   expect(this.SUT.loginUser(this.userEmail, this.userPassword)).should.be.rejectedWith(Error);
-  // }
 }

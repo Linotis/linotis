@@ -2,9 +2,10 @@
     "restartable": "rs",
     "ignore": [".git", "node_modules/", "dist/", "coverage/", "test/"],
     "watch": ["src"],
-    "exec": "ts-node ./src/index.ts",
+    "exec": "npm test && ts-node ./src/index.ts ",
     "env": {
       "NODE_ENV": "development"
     },
-    "ext": "json,ts"
+    "ext": "json,ts",
+    "delay": "10"
   }
