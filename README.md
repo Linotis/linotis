@@ -4,6 +4,6 @@ _Learning languages, through writing._
 ## Introduction
 [Client](https://github.com/Linotis/linotis/blob/main/client/README.md)
 
-[Backend]()
+[Backend](https://github.com/Linotis/linotis/blob/main/server/SERVER.md)
 ## Features
 ## License
