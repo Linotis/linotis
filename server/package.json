@@ -34,7 +34,8 @@
     "morgan": "^1.10.0",
     "multer": "^1.4.4",
     "passport": "^0.5.0",
-    "passport-jwt": "^4.0.0"
+    "passport-jwt": "^4.0.0",
+    "autocannon": "7.5.0"
   },
   "devDependencies": {
     "@testdeck/mocha": "^0.2.0",

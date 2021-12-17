@@ -5,7 +5,7 @@ export class UserRoutes {
 
   private userController: UserController = new UserController();
   
-	public route(app: Application) {
+	public route(app: Application): void {
 		app.post('/api/auth/login', (req: Request, res: Response) => {
       this.userController.login(req, res);
 	  });
