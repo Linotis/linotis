@@ -1,22 +1,28 @@
 import { Request, Response } from "express";
-import CollectionService from "../services/collection.service";
+import CollectionService from "./collection.service";
 
 export default class CollectionController {
 
 
-  private collectionService: CollectionService = new CollectionService();
+  collectionService: CollectionService = new CollectionService();
   
   async getAll(req: Request, res: Response) {
-    return this.collectionService.getCollections()
-    .then(value => res.status(200).json(value))
-    .catch((err) => res.status(500).json(err.message));
+    try {
+      const collections = await this.collectionService.getCollections();
+      return res.status(200).json(collections);
+    } catch(e: any) {
+      return res.status(400).json({message: e.message});
+    }
   }
 
   async getById(req: Request, res: Response) {
     const{id} = req.params;
-    return this.collectionService.getCollectionById(id)
-    .then(value => res.status(200).json(value))
-    .catch((err) => res.status(500).json(err));
+    try {
+      const collection = await this.collectionService.getCollectionById(id);
+      return res.status(200).json(collection);
+    } catch(e: any) {
+      return res.status(400).json({message: e.message});
+    }
   }
   
   async create(req: Request, res: Response) {

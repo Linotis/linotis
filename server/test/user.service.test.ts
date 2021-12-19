@@ -1,9 +1,10 @@
 import { suite, test } from '@testdeck/mocha';
 import * as _chai from 'chai';
 import { assert, expect } from 'chai';
+import exp from 'constants';
 const chaiaspromised = require('chai-as-promised');
 
-import UserService from '../src/services/user.service';
+import UserService from '../src/components/user/user.service';
 
 _chai.use(chaiaspromised);
 _chai.should();
@@ -30,10 +31,11 @@ _chai.expect;
   }
 
   @test 'Create user return Promise' () {
-    assert.instanceOf(this.SUT.createUser(this.userEmail, this.userPassword, this.userRole), Promise);
+    //assert.instanceOf(this.SUT.createUser(this.userEmail, this.userPassword, this.userRole), new Promise<Object>(() => {}));
+    this.SUT.createUser(this.userEmail, this.userPassword, this.userRole).then(data => expect(data).to.be.instanceOf(new Promise<Object>(() => {})));
   }
 
   @test 'Login user return Promise' () {
-    assert.instanceOf(this.SUT.loginUser(this.userEmail, this.userPassword), Promise);
+    this.SUT.loginUser(this.userEmail, this.userPassword).then(data => expect(data).to.be.instanceOf(new Promise<String>(() => {})));
   }
 }

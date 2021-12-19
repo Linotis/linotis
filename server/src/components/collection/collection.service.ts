@@ -1,4 +1,4 @@
-import collections from '../models/collection.model';
+import collections from './collection.model';
 
 export default class CollectionService {
 

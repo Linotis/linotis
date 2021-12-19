@@ -3,7 +3,7 @@ import * as _chai from 'chai';
 import { assert, expect } from 'chai';
 const chaiaspromised = require('chai-as-promised');
 
-import ScribbleService from '../src/services/scribble.service';
+import ScribbleService from '../src/components/scribble/scribble.service';
 
 _chai.use(chaiaspromised);
 _chai.should();

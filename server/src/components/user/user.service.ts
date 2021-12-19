@@ -1,4 +1,4 @@
-import users from '../models/user.model';
+import users from './user.model';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
@@ -13,9 +13,7 @@ export default class UserService {
 
     const salt = bcrypt.genSaltSync(10);
     const hashPassword = bcrypt.hashSync(password, salt);
-
     const user = await users.create({email: email, password: hashPassword, role: role});
-
     return user;
   }
 

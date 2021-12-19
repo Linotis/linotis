@@ -5,9 +5,9 @@ import morgan from 'morgan';
 import * as bodyParser from "body-parser";
 import mongoose from 'mongoose';
 import passport from 'passport';
-import {UserRoutes} from './routes/user.routers';
-import {CollectionRouters} from './routes/collection.routers';
-import { ScribbleRoutes } from './routes/scribble.routers';
+import {UserRoutes} from './components/user/user.routers';
+import {CollectionRouters} from './components/collection/collection.routers';
+import { ScribbleRoutes } from './components/scribble/scribble.routers';
 import checkPassport from './middleware/passport';
 
 class App {

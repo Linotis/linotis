@@ -3,10 +3,6 @@ import http from 'http';
 
 const PORT = process.env.PORT || 5000;
 
-// app.listen(PORT, () => {
-//   console.log(`Server has been started on ${PORT}`);
-// });
-
 const server = http.createServer(app);
 server.listen(PORT, () => {
   console.log(`Server has been started on ${PORT}`);
