@@ -33,20 +33,4 @@ _chai.expect;
     this.SUT.should.not.be.undefined;
     assert.instanceOf(this.SUT, ScribbleService);
   }
-
-  @test 'getScribbleById return Promise' () {
-    assert.instanceOf(this.SUT.getScribbleById(this.id), Promise);
-  }
-
-  @test 'createScribble return Promise' () {
-    assert.instanceOf(this.SUT.createScribble(this.title, this.imgSrc, this.collectionId), Promise);
-  }
-
-  @test 'updateScribble return Promise' () {
-    assert.instanceOf(this.SUT.updateScribble(this.id, this.updated), Promise);
-  }
-
-  @test 'deleteScribble return Promise' () {
-    assert.instanceOf(this.SUT.deleteScribble(this.id), Promise);
-  }
 }

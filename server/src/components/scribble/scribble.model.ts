@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import IScribble from "./scribble.interface";
 
 const Schema = mongoose.Schema;
 
@@ -17,4 +18,4 @@ const scribbleSchema = new Schema({
   }
 });
 
-export default mongoose.model('Scribble', scribbleSchema);
+export default mongoose.model<IScribble & mongoose.Document>('Scribble', scribbleSchema);
