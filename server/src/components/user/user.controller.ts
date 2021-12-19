@@ -17,8 +17,16 @@ export default class UserController {
 
   async register(req: Request, res: Response) {
     try {
-      const {email, password, role} = req.body;
-      await this.userService.createUser(email, password, role);
+      const userParams = {
+        email: req.body.email,
+        password: req.body.password,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        age: req.body.age,
+        role: req.body.role
+      }
+      //const {email, password, firstName, lastName, age, role} = req.body;
+      await this.userService.createUser(userParams);
       return res.status(201).json({message: 'Ok'});
     } catch(e: any) {
       return res.status(400).json({message: e.message});
