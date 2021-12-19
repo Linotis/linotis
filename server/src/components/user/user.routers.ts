@@ -10,8 +10,8 @@ export class UserRoutes {
       this.userController.login(req, res);
 	  });
 
-		app.post('/api/auth/register', (req: Request, res: Response) => {
-			this.userController.register(req, res);
-		});
+    app.post('/api/auth/register', (req: Request, res: Response) => {
+      this.userController.register(req, res);
+    });
 	}
 }
