@@ -8,6 +8,7 @@ if(cluster.isPrimary) {
   console.log(`Master started, pid: ${pid}`);
   for(let i = 0; i < cpusCount - 1; i++ ) {
     const worker = cluster.fork();
+    console.log(`Worker pid ${worker.process.pid}`);
   }
 
   cluster.on('exit', (worker, code) => {

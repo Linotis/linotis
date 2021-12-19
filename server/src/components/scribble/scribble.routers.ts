@@ -1,6 +1,6 @@
 import { Application, Request, Response } from 'express';
-import ScribbleController from '../controllers/scribble.controller';
-import upload from '../middleware/upload';
+import ScribbleController from './scribble.controller';
+import upload from '../../middleware/upload';
 import passport from 'passport';
 
 export class ScribbleRoutes {

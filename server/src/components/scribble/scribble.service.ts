@@ -1,5 +1,5 @@
-import Scribble from '../models/scribble.model';
-import Collection from '../models/collection.model';
+import Scribble from './scribble.model';
+import Collection from '../collection/collection.model';
 
 export default class ScribbleService {
 

@@ -2,7 +2,7 @@
     "restartable": "rs",
     "ignore": [".git", "node_modules/", "dist/", "coverage/", "test/"],
     "watch": ["src"],
-    "exec": "npm test && ts-node ./src/cluster.ts ",
+    "exec": "ts-node ./src/index.ts",
     "env": {
       "NODE_ENV": "development"
     },

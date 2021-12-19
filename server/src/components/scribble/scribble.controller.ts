@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import ScribbleService from "../services/scribble.service";
+import ScribbleService from "./scribble.service";
 
 export default class ScribbleController {
   

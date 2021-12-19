@@ -1,5 +1,5 @@
 import { Application, Request, Response } from 'express';
-import CollectionController from '../controllers/collection.controller';
+import CollectionController from './collection.controller';
 import passport from 'passport';
 
 export class CollectionRouters {
