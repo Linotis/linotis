@@ -4,16 +4,24 @@ import jwt from 'jsonwebtoken';
 
 export default class UserService {
 
-  public async createUser(email: string, password: string, role: string): Promise<Object> {
-    const candidate = await users.findOne({email});
+  public async createUser(userParams): Promise<Object> {
+    const candidate = await users.findOne({email: userParams.email});
     
     if(candidate) {
-      throw new Error(`User ${email} already exists`);
+      throw new Error(`User ${userParams.email} already exists`);
     }
 
     const salt = bcrypt.genSaltSync(10);
-    const hashPassword = bcrypt.hashSync(password, salt);
-    const user = await users.create({email: email, password: hashPassword, role: role});
+    const hashPassword = bcrypt.hashSync(userParams.password, salt);
+    const user = await users.create(
+        { email: userParams.email,
+          password: hashPassword,
+          firstName: userParams.firstName,
+          lastName: userParams.lastName,
+          age: userParams.age,
+          role: userParams.role
+        }
+      );
     return user;
   }
 
