@@ -29,13 +29,4 @@ _chai.expect;
     this.SUT.should.not.be.undefined;
     assert.instanceOf(this.SUT, UserService);
   }
-
-  @test 'Create user return Promise' () {
-    //assert.instanceOf(this.SUT.createUser(this.userEmail, this.userPassword, this.userRole), new Promise<Object>(() => {}));
-    this.SUT.createUser(this.userEmail, this.userPassword, this.userRole).then(data => expect(data).to.be.instanceOf(new Promise<Object>(() => {})));
-  }
-
-  @test 'Login user return Promise' () {
-    this.SUT.loginUser(this.userEmail, this.userPassword).then(data => expect(data).to.be.instanceOf(new Promise<String>(() => {})));
-  }
 }

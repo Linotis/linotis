@@ -16,8 +16,8 @@ export default class ScribbleService {
     });
     await scribble.save();
     const collectionById = await Collection.findById(collectionId);
-    collectionById.scribbles.push(scribble);
-    await collectionById.save();
+    collectionById!.scribbles.push(scribble);
+    await collectionById!.save();
     return scribble;
   }
 

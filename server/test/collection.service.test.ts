@@ -37,24 +37,4 @@ _chai.expect;
     this.SUT.should.not.be.undefined;
     assert.instanceOf(this.SUT, CollectionService);
   }
-
-  @test 'getAllCollections return Promise' () {
-    this.SUT.getCollections().then(data => expect(data).to.be.instanceOf(new Promise<any[]>(() => {})));
-  }
-
-  @test 'getCollectionsById return Promise' () {
-    this.SUT.getCollectionById(this.id).then(data => expect(data).to.be.instanceOf(new Promise<any>(() => {})));
-  }
-
-  @test 'Create collection return Promise' () {
-    assert.instanceOf(this.SUT.createCollection(this.name), Promise);
-  }
-
-  @test 'Update collection return Promise' () {
-    assert.instanceOf(this.SUT.updateCollection(this.id, this.updated), Promise);
-  }
-
-  @test 'Delete collection return Promise' () {
-    assert.instanceOf(this.SUT.deleteCollection(this.id), Promise);
-  }
 }
