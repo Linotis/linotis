@@ -1,0 +1,272 @@
+{
+	"info": {
+		"_postman_id": "9919fdeb-5aa9-406b-bd2a-e3036b51dd6f",
+		"name": "linotis-test-collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let jsonData = JSON.parse(responseBody);",
+							"pm.environment.set(\"authorization\", jsonData.token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"{{email}}\",\n    \"password\": \"{{password}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{host}}:{{port}}/api/auth/login",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CREATE collection",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const resData = pm.response.text();",
+							"const resJson = pm.response.json();",
+							"const name = pm.request.body.name;",
+							"let jsonData = JSON.parse(responseBody);",
+							"",
+							"pm.test(\"Status code is 200\", () => {",
+							"  pm.expect(pm.response.code).to.eql(201);",
+							"});",
+							"",
+							"pm.test('Response have field name', () => {",
+							"    pm.expect(resData.name).to.equal(name);",
+							"});",
+							"",
+							"pm.test('Response have array scribble', () => {",
+							"    pm.expect(resJson.scribbles).to.be.a(\"array\");",
+							"});",
+							"",
+							"pm.environment.set(\"collectionId\", jsonData._id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{authorization}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"{{newCollectionName}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{host}}:{{port}}/api/collection",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"collection"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET collectionById",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const resJson = pm.response.json();",
+							"const nameCollection = pm.environment.get(\"newCollectionName\");",
+							"//let jsonData = JSON.parse(responseBody);",
+							"",
+							"pm.test(\"Status code is 200\", () => {",
+							"  pm.expect(pm.response.code).to.eql(200);",
+							"});",
+							"",
+							"pm.test('Response have field name', () => {",
+							"    pm.expect(resJson.name).to.equal(nameCollection);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{authorization}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:5000/api/collection/{{collectionId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"collection",
+						"{{collectionId}}"
+					],
+					"query": [
+						{
+							"key": "Authorization",
+							"value": "{{}}",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UPDATE CollectionById",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const resJson = pm.response.json();",
+							"const updatedCollectionName = pm.environment.get(\"updatedCollectionName\");",
+							"",
+							"pm.test(\"Status code is 201\", () => {",
+							"  pm.expect(pm.response.code).to.eql(201);",
+							"});",
+							"",
+							"pm.test('Response have field name', () => {",
+							"    pm.expect(resJson.name).to.equal(updatedCollectionName);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{authorization}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"{{updatedCollectionName}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/collection/{{collectionId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"collection",
+						"{{collectionId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE collectionById",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const resJson = pm.response.json();",
+							"//const updatedCollectionName = pm.environment.get(\"updatedCollectionName\");",
+							"",
+							"pm.test(\"Status code is 200\", () => {",
+							"  pm.expect(pm.response.code).to.eql(200);",
+							"});",
+							"",
+							"pm.test('Response have message Ok', () => {",
+							"    pm.expect(resJson.message).to.equal('Collection delete');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{authorization}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:5000/api/collection/{{collectionId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"collection",
+						"{{collectionId}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
