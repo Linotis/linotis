@@ -10,7 +10,7 @@
     "dev": "tsc && nodemon --config nodemon.json src/index.ts",
     "build": "tsc --build",
     "test:unit": "nyc ./node_modules/.bin/_mocha 'test/**/*.test.ts'",
-    "test:api": "newman run ./api-test/linotis-api-test.postman_collection.json -e ./api-test/linotis-dev.postman_environment.json"
+    "test:api": "newman run ./api-test/linotis-test-collection.postman_collection.json -e ./api-test/linotis-dev.postman_environment.json"
   },
   "repository": {
     "type": "git",
