@@ -1,0 +1,287 @@
+{
+	"info": {
+		"_postman_id": "7dcc93e6-4971-4f59-9d49-d3b8c2a7a422",
+		"name": "linotis-test-scribble",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let jsonData = JSON.parse(responseBody);",
+							"pm.environment.set(\"authorization\", jsonData.token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"{{email}}\",\n    \"password\": \"{{password}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{host}}:{{port}}/api/auth/login",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CREATE scribble",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let jsonData = JSON.parse(responseBody);",
+							"",
+							"pm.test(\"Status code is 201\", () => {",
+							"  pm.expect(pm.response.code).to.eql(201);",
+							"});",
+							"",
+							"pm.environment.set(\"scribbleId\", jsonData._id);",
+							"pm.environment.set(\"scribbleTitle\", jsonData.title);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{authorization}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "tests",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"type": "file",
+							"src": []
+						},
+						{
+							"key": "collectionId",
+							"value": "61bf7b744055868f840dd64e",
+							"type": "text"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/scribble/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"scribble",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET scribbleById",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const resJson = pm.response.json();",
+							"const nameCollection = pm.environment.get(\"\");",
+							"",
+							"pm.test(\"Status code is 200\", () => {",
+							"  pm.expect(pm.response.code).to.eql(200);",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{authorization}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/scribble/{{scribbleId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"scribble",
+						"{{scribbleId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UPDATE ScribbleById",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const resJson = pm.response.json();",
+							"const updatedScribbleTitle = pm.environment.get(\"updatedScribbleTitle\");",
+							"",
+							"pm.test(\"Status code is 201\", () => {",
+							"  pm.expect(pm.response.code).to.eql(201);",
+							"});",
+							"",
+							"pm.test('Response have field updated title', () => {",
+							"    pm.expect(resJson.title).to.equal(updatedScribbleTitle);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{authorization}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "{{updatedScribbleTitle}}",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"type": "file",
+							"src": []
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/scribble/{{scribbleId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"scribble",
+						"{{scribbleId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE scribbleById",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const resJson = pm.response.json();",
+							"",
+							"pm.test(\"Status code is 200\", () => {",
+							"  pm.expect(pm.response.code).to.eql(200);",
+							"});",
+							"",
+							"pm.test('Response have message Ok', () => {",
+							"    pm.expect(resJson.message).to.equal('Scribble delete');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{authorization}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:5000/api/collection/scribble/{{scribbleId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"collection",
+						"scribble",
+						"{{scribbleId}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
