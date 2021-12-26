@@ -1,8 +1,11 @@
 import users from './user.model';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import IUser from './user.interface';
 
 export default class UserService {
+
+  private jwtSecret = process.env.JWT!;
 
   public async createUser(userParams): Promise<Object> {
     const candidate = await users.findOne({email: userParams.email});
@@ -26,15 +29,11 @@ export default class UserService {
   }
 
   public async loginUser(email: string, password: string): Promise<String> {
-    const candidate = await users.findOne({email});
-
-    if(candidate) {
-      const passwordResult = bcrypt.compareSync(password, candidate.password);
+    const user = await this.checkUser(email);
+    if(user) {
+      const passwordResult = bcrypt.compareSync(password, user.password);
       if(passwordResult) {
-        const token = jwt.sign({
-          email: candidate.email,
-          userId: candidate._id
-        }, process.env.JWT!, {expiresIn: 60 * 60});
+        const token = this.createToken(user.email, user._id, this.jwtSecret);
         return token;
       } else {
         throw new Error('Invalid password');
@@ -42,5 +41,18 @@ export default class UserService {
     } else {
       throw new Error('User not found');
     }
+  }
+
+  public async createToken(email: string, userId: string, jwtSecret:string): Promise<String> {
+    const token = jwt.sign({
+      email: email,
+      userId: userId
+    }, jwtSecret, {expiresIn: 60 * 60});
+    return token;
+  }
+
+  public async checkUser(email: string): Promise<(IUser & {_id: any;}) | null> {
+    const candidate = await users.findOne({email});
+    return candidate;
   }
 }

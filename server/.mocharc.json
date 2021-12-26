@@ -1,4 +1,5 @@
 {
     "require": "./register.js",
-    "reporter": "list"
+    "reporter": "list",
+    "timeout": "2000"
 }
