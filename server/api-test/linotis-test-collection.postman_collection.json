@@ -153,13 +153,6 @@
 						"api",
 						"collection",
 						"{{collectionId}}"
-					],
-					"query": [
-						{
-							"key": "Authorization",
-							"value": "{{}}",
-							"disabled": true
-						}
 					]
 				}
 			},
