@@ -5,7 +5,8 @@ const Schema = mongoose.Schema;
 
 const collectionSchema = new Schema({
   name: {
-    type: String
+    type: String,
+    required: true
   },
   scribbles: [{
     ref: 'Scribble',
