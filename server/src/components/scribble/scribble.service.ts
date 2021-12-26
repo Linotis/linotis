@@ -9,7 +9,7 @@ export default class ScribbleService {
   }
   
   public async createScribble(title: string, imgSrc: string, collectionId: any) {
-    const scribble = new Scribble({
+    const scribble = await Scribble.create({
       title: title,
       imgSrc: imgSrc,
       collectionId: collectionId
