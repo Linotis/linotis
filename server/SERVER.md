@@ -15,7 +15,7 @@ The server architecture consists of:
 - WebServer
 - Database
 
-<a href="#"><img src="https://github.com/Linotis/linotis-docs/blob/main/back-arch.png" style="width: 250px"/></a><br />
+<a href="#"><img src="https://github.com/Linotis/linotis-docs/blob/main/back-arch.png" style="width: 850px"/></a><br />
 
 ## Tests
 ### Unit tests
