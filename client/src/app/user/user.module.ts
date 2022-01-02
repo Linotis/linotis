@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LoginPageComponent } from './login-page/login-page.component';
-import { RegisterPageComponent } from './register-page/register-page.component';
 import { RouterModule } from '@angular/router';
 import { UserLayoutComponent } from './shared/user-layout/user-layout.component';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
