@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../shared/services/auth.service';
 
@@ -13,12 +14,23 @@ export class LoginPageComponent implements OnInit {
   form!: FormGroup;
   loginSubscription!: Subscription;
 
-  constructor(private auth: AuthService) {}
+  constructor(
+    private auth: AuthService,
+    private router: Router, 
+    private activateRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.form = new FormGroup({
       email: new FormControl(null, [Validators.required, Validators.email]),
       password: new FormControl(null, [Validators.required, Validators.minLength(6)])
+    })
+
+    this.activateRoute.queryParams.subscribe((params: Params) => {
+      if(params['registered']) {
+        this.form.enable();
+      } else if (params['accessDenied']) {
+        
+      }
     })
   }
 
