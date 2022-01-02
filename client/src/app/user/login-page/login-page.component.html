@@ -1,1 +1,55 @@
-<p>login-page works!</p>
+<div>
+  <div>
+    <a [routerLink]="['/', 'register']">Registration</a>
+  </div>
+  <div>
+    <form 
+    class="card"
+    [formGroup]="form"
+    (ngSubmit) ="onSubmit()"
+    >
+      <div class="card-content">
+        <span class="card-title">Log in</span>
+        <div class="input-field">
+          <input
+          formControlName="email" 
+          id="email"
+          type="email">
+          <label for="email">Your email:</label>
+          <span 
+          class="helper-text red-text" 
+          *ngIf="form.get('email')?.invalid && form.get('email')?.touched"
+          >
+            <span *ngIf="form.get('email')?.errors!['required']">Email do not be empty</span>
+            <span></span>
+          </span>
+        </div>
+        <div class="input-field">
+          <input
+          formControlName="password" 
+          id="password" 
+          type="password">
+          <label for="password">Your password:</label>
+          <span
+          *ngIf="form.get('password')?.invalid && form.get('password')?.touched"
+          >
+            <span *ngIf="form.get('password')?.errors!['required']">Password don't be empty</span>
+            <span *ngIf="form.get('password')?.errors!['minlength'] && form.get('password')?.errors!['minlength']['requiredLength']">
+              Password should not be less than {{form.get('password')?.errors!['minlength']['requiredLength']}} characters.
+              Now it's {{form.get('password')?.errors!['minlength']['actualLength']}}
+            </span>
+          </span>
+        </div>
+      </div>
+      <div class="card-action">
+        <button 
+        type="submit" 
+        class=""
+        [disabled]="form.invalid || form.disabled"
+        >
+          Log in
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
