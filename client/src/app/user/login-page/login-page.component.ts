@@ -27,7 +27,7 @@ export class LoginPageComponent implements OnInit {
 
     this.activateRoute.queryParams.subscribe((params: Params) => {
       if(params['registered']) {
-        this.form.enable();
+        //this.form.enable();
       } else if (params['accessDenied']) {
         
       }
@@ -43,7 +43,7 @@ export class LoginPageComponent implements OnInit {
   onSubmit(): void {
     this.form.disable();
     this.loginSubscription = this.auth.login(this.form.value).subscribe(
-      () => console.log("Login ok"), error => {console.warn(error), this.form.enable()}
+      () => this.router.navigate(['/user/profile']), error => {console.warn(error), this.form.enable()}
     )
   }
 }

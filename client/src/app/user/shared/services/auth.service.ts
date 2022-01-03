@@ -8,7 +8,7 @@ import { Observable, tap } from 'rxjs';
 })
 export class AuthService {
 
-  private token = '';
+  token = '';
 
   constructor(private http: HttpClient) {}
 
