@@ -1,21 +1,30 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ErrorPageComponent } from './error-page/error-page.component';
-import { LoginPageComponent } from './user/login-page/login-page.component';
-import { RegisterPageComponent } from './user/register-page/register-page.component';
+import { ErrorPageComponent } from './shared/component/error-page/error-page.component';
 import { AuthLayoutComponent } from './layout/auth-layout/auth-layout.component';
 import { AuthGuard } from './core/guard/auth.guard';
+import { ContentLayoutComponent } from '../app/layout/content-layout/content-layout.component';
 
 const routes: Routes = [
   {
-    path: '', component: AuthLayoutComponent, children: [
-      {path: '', redirectTo: '/login', pathMatch: 'full'},
-      {path: 'login', component: LoginPageComponent},
-      {path: 'register', component: RegisterPageComponent}
+    path: '',
+    redirectTo: '/auth/login',
+    pathMatch: 'full'
+  },
+  {
+    path: '', 
+    component: ContentLayoutComponent, 
+    canActivate: [AuthGuard], 
+    children : [
+      {
+        path: '', loadChildren: () => import('../app/modules/home/home.module').then(m => m.HomeModule)
+      }
     ]
   },
   {
-    path: 'user', canActivate: [AuthGuard], loadChildren: () => import('./user/user.module').then(m => m.UserModule)
+    path: 'auth',
+    component: AuthLayoutComponent, 
+    loadChildren: () => import('../app/modules/auth/auth.module').then(m => m.AuthModule)
   },
   {path: '**', component: ErrorPageComponent}
 ];
