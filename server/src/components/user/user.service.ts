@@ -55,4 +55,16 @@ export default class UserService {
     const candidate = await users.findOne({email});
     return candidate;
   }
+
+  // public async getUserInfo(token: string) {
+  //   const userId = this.tokenDecode(token);
+  //   const user = await users.findById(id);
+  //   return user;
+  //   //const decoded = this.tokenDecode(token);
+  // }
+
+  // public async tokenDecode(token: string) {
+  //   const decodedToken = jwt.decode(token);
+  //   return decodedToken;
+  // }
 }

@@ -19,6 +19,7 @@ export class AuthService {
   login(user: IUserLogin): Observable<{token: string}> {
     return this.http.post<{token: string}>('/api/auth/login', user).pipe(tap(({token}) => {
       localStorage.setItem('auth-token', token);
+      this.setToken(token);
     }))
   }
 
