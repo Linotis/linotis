@@ -18,6 +18,7 @@ _chai.expect;
   private userId: string;
   private jwtSecret: string;
   private userParams: any;
+  private token: string;
 
   before() {
     this.SUT = new UserService();
@@ -33,6 +34,7 @@ _chai.expect;
       age: 30,
       role: 'student'
     }
+    this.token = '123123'
   }
 
   @test 'UserService is created' () {
@@ -60,4 +62,9 @@ _chai.expect;
     this.SUT.createUser(this.userParams);
     sinon.assert.calledWith(users.findOne, {email: this.userEmail});
   }
+
+  // @test 'GetUserInfo called findById' () {
+  //   this.SUT.getUserInfo(this.token);
+  //   sinon.assert.calledWith(users.findById, {_id: this.userId});
+  // }
 }
