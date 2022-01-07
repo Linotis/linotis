@@ -1,0 +1,30 @@
+@import './variables';
+
+.button {
+  display: inline-block;
+  position: relative;
+  text-decoration: none;
+  padding: 0.8em 1.2em;
+  border-radius: 15px;
+  color: #fff;
+  font-size: 24px;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+  min-width: 14.5em;
+  cursor: pointer;
+  z-index: 1;
+
+  &:hover {
+    opacity: 0.3;
+  }
+
+  &--primary {
+    background: $button-color-first;
+  }
+
+  &--second {
+    background: $button-color-second;
+    border-bottom: $button-border-second solid 3px;
+  }
+}

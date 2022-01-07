@@ -1,0 +1,17 @@
+@import '../../../../styles/buttons.scss';
+
+.error-page {
+  
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 100px;
+  }
+
+  &__message {
+    font-size: 96px;
+    padding: 20px;
+    text-align: center;
+  }
+}
