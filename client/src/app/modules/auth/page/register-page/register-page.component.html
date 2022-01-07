@@ -1,43 +1,43 @@
-<div>
-  <div>
-    <a [routerLink]="['/', 'login']">Log in</a>
+<div class="register">
+  <div class="register__button-wrapper-header">
+    <a class="button button--third" [routerLink]="['/', 'login']">Log in</a>
   </div>
   
-  <div>
-    <form class="card"
+  <div class="auth-form__wrapper">
+    <form class="auth-form"
     [formGroup]="form"
     (ngSubmit) ="onSubmit()"
     >
-      <div class="card-content">
-        <span class="card-title">Create an account</span>
-        <div class="input-field">
-          <input formControlName="firstName" id="firstName" type="text" placeholder="Your first name">
+      <div class="auth-form__content">
+        <span class="auth-form__title register__title">Create an account</span>
+        <div class="input-wrapper">
+          <input class="input input--primary" formControlName="firstName" id="firstName" type="text" placeholder="Your first name">
           <span class="helper-text red-text">
           </span>
         </div>
-        <div class="input-field">
-          <input formControlName="lastName" id="lastName" type="text" placeholder="Your last name">
+        <div class="input-wrapper">
+          <input class="input input--primary" formControlName="lastName" id="lastName" type="text" placeholder="Your last name">
           <span class="helper-text red-text">
           </span>
         </div>
-        <div class="input-field">
-          <input formControlName="age" id="age" type="number" min="1" max="100" placeholder="Your age">
+        <div class="input-wrapper">
+          <input class="input input--primary" formControlName="age" id="age" type="number" min="1" max="100" placeholder="Your age">
           <span class="helper-text red-text">
           </span>
         </div>
-        <div class="input-field">
-          <input formControlName="email" id="email" type="email" placeholder="Your email">
+        <div class="input-wrapper">
+          <input class="input input--primary" formControlName="email" id="email" type="email" placeholder="Your email">
           <span class="helper-text red-text" *ngIf="form.get('email')?.invalid && form.get('email')?.touched">
             <span></span>
             <span></span>
           </span>
         </div>
-        <div class="input-field">
-          <input formControlName="password" id="password" type="password" placeholder="Your password">
+        <div class="input-wrapper">
+          <input class="input input--primary" formControlName="password" id="password" type="password" placeholder="Your password">
         </div>
       </div>
-      <div class="card-action">
-        <button type="submit" class="modal-action btn waves-effect" [disabled]="form.invalid || form.disabled">
+      <div class="register__button-wrapper">
+        <button type="submit" class="button button--primary" [disabled]="form.invalid || form.disabled">
           Create account
         </button>
       </div>

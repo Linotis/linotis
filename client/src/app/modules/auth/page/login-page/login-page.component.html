@@ -1,21 +1,22 @@
-<div>
-  <div>
-    <a [routerLink]="['/', 'register']">Registration</a>
+<div class="login">
+  <div class="login__button-wrapper-header">
+    <a class="button button--third" [routerLink]="['/', 'register']">Registration</a>
   </div>
-  <div>
+  <div class="auth-form__wrapper">
     <form 
-    class="card"
+    class="auth-form"
     [formGroup]="form"
     (ngSubmit) ="onSubmit()"
     >
-      <div class="card-content">
-        <span class="card-title">Log in</span>
-        <div class="input-field">
+      <div class="auth-form__content">
+        <span class="auth-form__title">Log in</span>
+        <div class="input-wrapper">
           <input
+          class="input input--primary"
           formControlName="email" 
           id="email"
-          type="email">
-          <label for="email">Your email:</label>
+          type="email"
+          placeholder="Your email">
           <span 
           class="helper-text red-text" 
           *ngIf="form.get('email')?.invalid && form.get('email')?.touched"
@@ -24,12 +25,14 @@
             <span></span>
           </span>
         </div>
-        <div class="input-field">
+        <div class="input-wrapper">
           <input
+          class="input input--primary"
           formControlName="password" 
           id="password" 
-          type="password">
-          <label for="password">Your password:</label>
+          type="password"
+          placeholder="Your password"
+          >
           <span
           *ngIf="form.get('password')?.invalid && form.get('password')?.touched"
           >
@@ -41,10 +44,10 @@
           </span>
         </div>
       </div>
-      <div class="card-action">
+      <div class="login__button-wrapper">
         <button 
         type="submit" 
-        class=""
+        class="button button--primary"
         [disabled]="form.invalid || form.disabled"
         >
           Log in

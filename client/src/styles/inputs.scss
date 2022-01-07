@@ -1,0 +1,26 @@
+@import './variables';
+
+.input {
+  display: inline-block;
+  position: relative;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 15px;
+  border: none;
+  padding: 0.5em 1.2em;
+  min-width: 12.5em;
+
+  &--primary {
+    background: $input-color-primary;
+    border: $input-border-primary solid 1px;
+
+    &::placeholder {
+      color: #DAD6D4;
+    }
+  }
+}
+
+.input-wrapper + .input-wrapper {
+  padding-top: 16px;
+}

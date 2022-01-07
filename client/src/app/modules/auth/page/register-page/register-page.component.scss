@@ -1,0 +1,24 @@
+@import '../../../../../styles/mixins';
+@import '../../../../../styles/buttons.scss';
+@import '../../../../../styles/inputs.scss';
+@import '../../../../../styles/forms.scss';
+
+.register {
+  
+  @include auth-block;
+
+  &__button-wrapper-header {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 50px;
+    padding-top: 50px;
+  }
+
+  &__button-wrapper {
+    padding-top: 48px;
+  }
+
+  &__title {
+    padding-bottom: 48px;
+  }
+}

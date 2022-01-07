@@ -4,15 +4,16 @@
   display: inline-block;
   position: relative;
   text-decoration: none;
-  padding: 0.8em 1.2em;
+  padding: 0.3em 1.2em;
   border-radius: 15px;
   color: #fff;
   font-size: 24px;
   font-weight: bold;
   text-transform: uppercase;
   text-align: center;
-  min-width: 14.5em;
+  min-width: 12.5em;
   cursor: pointer;
+  border: none;
   z-index: 1;
 
   &:hover {
@@ -21,10 +22,19 @@
 
   &--primary {
     background: $button-color-first;
+    border-bottom: $button-border-first solid 3px;
   }
 
   &--second {
     background: $button-color-second;
     border-bottom: $button-border-second solid 3px;
+  }
+
+  &--third {
+    background: $basic-bg-color;
+    border: $button-border-third solid 1px;
+    color: $button-text-first;
+    padding: 0.5em 1.2em;
+    font-size: 18px;
   }
 }
