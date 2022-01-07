@@ -16,11 +16,29 @@
     border: $input-border-primary solid 1px;
 
     &::placeholder {
-      color: #DAD6D4;
+      color: $input-text-placeholder;
     }
   }
 }
 
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .input-wrapper + .input-wrapper {
   padding-top: 16px;
+}
+
+.helper {
+
+  &__text {
+    font-size: 14px;
+    padding-top: 10px;
+
+    &--red {
+      color: #f55e5e
+    }
+  }
 }

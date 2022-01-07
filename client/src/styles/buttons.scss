@@ -23,6 +23,14 @@
   &--primary {
     background: $button-color-first;
     border-bottom: $button-border-first solid 3px;
+
+    &:disabled {
+      background: rgb(189, 188, 188);
+
+      &:hover {
+        opacity: 1;
+      }
+    }
   }
 
   &--second {

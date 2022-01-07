@@ -1,8 +1,4 @@
-<div class="register">
-  <div class="register__button-wrapper-header">
-    <a class="button button--third" [routerLink]="['/', 'login']">Log in</a>
-  </div>
-  
+<div class="register">  
   <div class="auth-form__wrapper">
     <form class="auth-form"
     [formGroup]="form"
@@ -40,6 +36,10 @@
         <button type="submit" class="button button--primary" [disabled]="form.invalid || form.disabled">
           Create account
         </button>
+      </div>
+      <span class="auth-form__text-span">or</span>
+      <div class="register__button-wrapper">
+        <a class="button button--third" [routerLink]="['/', 'login']">Log in</a>
       </div>
     </form>
   </div>

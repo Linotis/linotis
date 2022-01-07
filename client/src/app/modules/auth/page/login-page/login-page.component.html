@@ -1,7 +1,4 @@
 <div class="login">
-  <div class="login__button-wrapper-header">
-    <a class="button button--third" [routerLink]="['/', 'register']">Registration</a>
-  </div>
   <div class="auth-form__wrapper">
     <form 
     class="auth-form"
@@ -11,14 +8,17 @@
       <div class="auth-form__content">
         <span class="auth-form__title">Log in</span>
         <div class="input-wrapper">
-          <input
-          class="input input--primary"
-          formControlName="email" 
-          id="email"
-          type="email"
-          placeholder="Your email">
+          <div>
+            <input
+            class="input input--primary"
+            formControlName="email" 
+            id="email"
+            type="email"
+            placeholder="Your email">
+          </div>
+          
           <span 
-          class="helper-text red-text" 
+          class="helper__text helper__text--red" 
           *ngIf="form.get('email')?.invalid && form.get('email')?.touched"
           >
             <span *ngIf="form.get('email')?.errors!['required']">Email do not be empty</span>
@@ -26,14 +26,17 @@
           </span>
         </div>
         <div class="input-wrapper">
-          <input
-          class="input input--primary"
-          formControlName="password" 
-          id="password" 
-          type="password"
-          placeholder="Your password"
-          >
+          <div>
+            <input
+            class="input input--primary"
+            formControlName="password" 
+            id="password" 
+            type="password"
+            placeholder="Your password"
+            >
+          </div>
           <span
+          class="helper__text helper__text--red"
           *ngIf="form.get('password')?.invalid && form.get('password')?.touched"
           >
             <span *ngIf="form.get('password')?.errors!['required']">Password don't be empty</span>
@@ -52,6 +55,10 @@
         >
           Log in
         </button>
+      </div>
+      <span class="auth-form__text-span">or</span>
+      <div class="login__button-wrapper">
+        <a class="button button--third" [routerLink]="['/', 'register']">Sign up</a>
       </div>
     </form>
   </div>
