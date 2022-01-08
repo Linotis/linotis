@@ -56,15 +56,15 @@ export default class UserService {
     return candidate;
   }
 
-  // public async getUserInfo(token: string) {
-  //   const userId = this.tokenDecode(token);
-  //   const user = await users.findById(id);
-  //   return user;
-  //   //const decoded = this.tokenDecode(token);
-  // }
+  public async getUserInfo(token) {
+    const userDecodedData = await this.tokenDecode(token);
+    const user = await users.findById(userDecodedData?.payload.userId);
+    return user;
+  }
 
-  // public async tokenDecode(token: string) {
-  //   const decodedToken = jwt.decode(token);
-  //   return decodedToken;
-  // }
+  public async tokenDecode(token: string) {
+    token = token.replace("Bearer ", "");
+    const payload = jwt.decode(token, {complete: true});
+    return payload;
+  }
 }

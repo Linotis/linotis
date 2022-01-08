@@ -1,4 +1,5 @@
 import { Application, Request, Response } from 'express';
+import passport from 'passport';
 import UserController from './user.controller';
 
 export class UserRoutes {
@@ -13,5 +14,9 @@ export class UserRoutes {
     app.post('/api/auth/register', (req: Request, res: Response) => {
       this.userController.register(req, res);
     });
+
+    app.get('/api/user', passport.authenticate('jwt', {session: false}), (req: Request, res: Response) => {
+      this.userController.getById(req, res);
+    })
 	}
 }
