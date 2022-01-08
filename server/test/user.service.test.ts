@@ -34,7 +34,7 @@ _chai.expect;
       age: 30,
       role: 'student'
     }
-    this.token = '123123'
+    this.token = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRlbW9AZGVtby5jb20iLCJ1c2VySWQiOiI2MWQ3NGI5NTMwOTEzMDY1MjQ1YjhjMTYiLCJpYXQiOjE2NDE2NjUxMTcsImV4cCI6MTY0MTY2ODcxN30.-jQHgss5M74k2o-JujI7KPf57REAEr5ecFqITIFxup8'
   }
 
   @test 'UserService is created' () {
@@ -63,8 +63,9 @@ _chai.expect;
     sinon.assert.calledWith(users.findOne, {email: this.userEmail});
   }
 
-  // @test 'GetUserInfo called findById' () {
-  //   this.SUT.getUserInfo(this.token);
-  //   sinon.assert.calledWith(users.findById, {_id: this.userId});
-  // }
-}
+  @test 'GetUserInfo called decodeToken' () {
+    let spy = sinon.spy(this.SUT, "tokenDecode");
+    this.SUT.getUserInfo(this.token);
+    sinon.assert.calledWith(spy);
+  }
+} 
