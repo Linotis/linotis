@@ -41,7 +41,7 @@ export class RegisterPageComponent implements OnInit {
     this.form.disable();
     this.registerSubscribtion = this.auth.register(this.form.value).subscribe(
       () => {
-        this.router.navigate(['/login'], {
+        this.router.navigate(['/auth/login'], {
           queryParams: {
             registered: true
           }
