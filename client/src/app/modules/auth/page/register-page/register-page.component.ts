@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../../../../core/service/auth.service';
 
@@ -14,7 +15,11 @@ export class RegisterPageComponent implements OnInit {
   form!: FormGroup;
   registerSubscribtion!: Subscription;
 
-  constructor(private auth: AuthService, private router: Router) { }
+  constructor(
+    private auth: AuthService, 
+    private router: Router, 
+    private toastr: ToastrService
+  ) { }
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -42,7 +47,7 @@ export class RegisterPageComponent implements OnInit {
           }
         })
       }, error => {
-        console.warn(error),
+        this.toastr.error(error.error.message),
         this.form.enable()
       })
   }

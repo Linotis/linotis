@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute, NavigationEnd, Params, Router } from '@angular/router';
+import { ActiveToast, ToastrService } from 'ngx-toastr';
 import { Observable, of } from 'rxjs';
 import { AuthService } from '../../../../core/service/auth.service';
 
@@ -15,9 +16,13 @@ describe('LoginPageComponent', () => {
     password: '123123'
   }
 
+  let toast: ActiveToast<any>;
+
   let fakeAuthService: AuthService;
   let fakeRouter: Router;
   let fakeActivateRoute: ActivatedRoute;
+  let fakeToast: ToastrService;
+  let navigateStatus: Promise<boolean>
 
   beforeEach(async () => {
     
@@ -30,7 +35,12 @@ describe('LoginPageComponent', () => {
     });
 
     fakeRouter = jasmine.createSpyObj<Router>('Router', {
-      navigate: (undefined)
+      navigate: navigateStatus
+    });
+
+    fakeToast = jasmine.createSpyObj<ToastrService>('ToastrService', {
+      success: toast
+      
     });
 
     await TestBed.configureTestingModule({
@@ -38,7 +48,8 @@ describe('LoginPageComponent', () => {
       providers: [
         { provide: AuthService, useValue: fakeAuthService },
         { provide: Router, useValue: fakeRouter },
-        { provide: ActivatedRoute, useValue: fakeActivateRoute }
+        { provide: ActivatedRoute, useValue: fakeActivateRoute },
+        { provide: ToastrService, useValue: fakeToast }
       ]
     })
     .compileComponents();

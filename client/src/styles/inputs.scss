@@ -28,14 +28,19 @@
 }
 
 .input-wrapper + .input-wrapper {
-  padding-top: 16px;
+  //padding-top: 16px;
 }
 
 .helper {
+  padding: 10px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   &__text {
     font-size: 14px;
-    padding-top: 10px;
+    //padding-top: 10px;
+    position: absolute;
 
     &--red {
       color: #f55e5e

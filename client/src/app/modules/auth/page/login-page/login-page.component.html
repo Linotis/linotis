@@ -16,14 +16,14 @@
             type="email"
             placeholder="Your email">
           </div>
-          
-          <span 
-          class="helper__text helper__text--red" 
-          *ngIf="form.get('email')?.invalid && form.get('email')?.touched"
-          >
-            <span *ngIf="form.get('email')?.errors!['required']">Email do not be empty</span>
-            <span></span>
-          </span>
+          <div class="helper">
+            <span 
+            class="helper__text helper__text--red" 
+            *ngIf="form.get('email')?.invalid && form.get('email')?.touched"
+            >
+              <span *ngIf="form.get('email')?.errors!['required']">Email do not be empty</span>
+            </span>
+          </div>
         </div>
         <div class="input-wrapper">
           <div>
@@ -35,9 +35,10 @@
             placeholder="Your password"
             >
           </div>
-          <span
-          class="helper__text helper__text--red"
-          *ngIf="form.get('password')?.invalid && form.get('password')?.touched"
+          <div class="helper">
+            <span
+            class="helper__text helper__text--red"
+            *ngIf="form.get('password')?.invalid && form.get('password')?.touched"
           >
             <span *ngIf="form.get('password')?.errors!['required']">Password don't be empty</span>
             <span *ngIf="form.get('password')?.errors!['minlength'] && form.get('password')?.errors!['minlength']['requiredLength']">
@@ -45,6 +46,7 @@
               Now it's {{form.get('password')?.errors!['minlength']['actualLength']}}
             </span>
           </span>
+          </div>
         </div>
       </div>
       <div class="login__button-wrapper">
