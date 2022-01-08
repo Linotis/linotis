@@ -31,5 +31,15 @@ export default class UserController {
     } catch(e: any) {
       return res.status(400).json({message: e.message});
     }
-  }  
+  }
+  
+  async getById(req: Request, res: Response) {
+    const{authorization} = req.headers;
+    try {
+      const user = await this.userService.getUserInfo(authorization);
+      return res.status(200).json(user);
+    } catch(e: any) {
+      return res.status(400).json({message: e.message});
+    }
+  }
 };
