@@ -25,7 +25,6 @@ export default class UserController {
         age: req.body.age,
         role: req.body.role
       }
-      //const {email, password, firstName, lastName, age, role} = req.body;
       await this.userService.createUser(userParams);
       return res.status(201).json({message: 'Ok'});
     } catch(e: any) {
@@ -41,5 +40,17 @@ export default class UserController {
     } catch(e: any) {
       return res.status(400).json({message: e.message});
     }
+  }
+
+  async updateUser(req: Request, res: Response) {
+    const{authorization} = req.headers;
+    const updatedData = {
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      age: req.body.age
+    }
+    return this.userService.updateUserInfo(authorization, updatedData)
+      .then(value => res.status(201).json(value))
+      .catch((err) => res.status(500).json(err.message));
   }
 };

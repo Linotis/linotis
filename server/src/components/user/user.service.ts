@@ -42,6 +42,22 @@ export default class UserService {
       throw new Error('User not found');
     }
   }
+  
+  public async getUserInfo(token) {
+    const userDecodedData = await this.tokenDecode(token);
+    const user = await users.findById(userDecodedData?.payload.userId);
+    return user;
+  }
+
+  public async updateUserInfo(token, updated: object) {
+    const userDecodedData = await this.tokenDecode(token);
+    const user = await users.findOneAndUpdate(
+      {_id: userDecodedData?.payload.userId},
+      {$set: updated},
+      {new: true}
+    )
+    return user;
+  }
 
   public async createToken(email: string, userId: string, jwtSecret:string): Promise<String> {
     const token = jwt.sign({
@@ -50,17 +66,12 @@ export default class UserService {
     }, jwtSecret, {expiresIn: 60 * 60});
     return token;
   }
-
+  
   public async checkUser(email: string): Promise<(IUser & {_id: any;}) | null> {
     const candidate = await users.findOne({email});
     return candidate;
   }
 
-  public async getUserInfo(token) {
-    const userDecodedData = await this.tokenDecode(token);
-    const user = await users.findById(userDecodedData?.payload.userId);
-    return user;
-  }
 
   public async tokenDecode(token: string) {
     token = token.replace("Bearer ", "");
