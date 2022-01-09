@@ -17,6 +17,10 @@ export class UserRoutes {
 
     app.get('/api/user', passport.authenticate('jwt', {session: false}), (req: Request, res: Response) => {
       this.userController.getById(req, res);
+    });
+
+    app.patch('/api/user', passport.authenticate('jwt', {session: false}), (req: Request, res: Response) => {
+      this.userController.updateUser(req, res);
     })
 	}
 }
