@@ -34,6 +34,7 @@ _chai.expect;
       age: 30,
       role: 'student'
     }
+
     this.token = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRlbW9AZGVtby5jb20iLCJ1c2VySWQiOiI2MWQ3NGI5NTMwOTEzMDY1MjQ1YjhjMTYiLCJpYXQiOjE2NDE2NjUxMTcsImV4cCI6MTY0MTY2ODcxN30.-jQHgss5M74k2o-JujI7KPf57REAEr5ecFqITIFxup8'
   }
 
@@ -66,6 +67,15 @@ _chai.expect;
   @test 'GetUserInfo called decodeToken' () {
     let spy = sinon.spy(this.SUT, "tokenDecode");
     this.SUT.getUserInfo(this.token);
+    sinon.assert.calledWith(spy);
+  }
+
+  @test 'UpdateUserInfo called decodeToken' () {
+    let updatedData = {
+      fistName: 'test'
+    }
+    let spy = sinon.spy(this.SUT, "tokenDecode");
+    this.SUT.updateUserInfo(this.token, updatedData);
     sinon.assert.calledWith(spy);
   }
 } 
