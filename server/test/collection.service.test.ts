@@ -18,11 +18,13 @@ _chai.expect;
   private id: string;
   private name: string;
   private updated: object;
+  private languageId: string;
 
   before() {
     this.SUT = new CollectionService();
     this.id = '123';
-    this.name = 'test'
+    this.name = 'test';
+    this.languageId = '12345';
     this.updated = {
       name: 'test'
     }  
@@ -47,8 +49,8 @@ _chai.expect;
 
   @test 'CreateCollection called create' () {
     sinon.stub(collection, "create");
-    this.SUT.createCollection(this.name);
-    sinon.assert.calledWith(collection.create, {name: this.name});
+    this.SUT.createCollection(this.name, this.languageId);
+    sinon.assert.calledWith(collection.create, {name: this.name, languageId: this.languageId});
   }
 
   @test 'UpdateCollection called findOneAndUpdate' () {
