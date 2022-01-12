@@ -5,6 +5,15 @@ export default class LanguageController {
   
   private languageService: LanguageService = new LanguageService();
 
+  async getAll(req: Request, res: Response) {
+    try {
+      const languages = await this.languageService.getLanguages();
+      return res.status(200).json(languages);
+    } catch(e: any) {
+      return res.status(400).json({message: e.message});
+    }
+  }
+
   async getById(req: Request, res: Response) {
     const{id} = req.params;
     return this.languageService.getLanguageById(id)

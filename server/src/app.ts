@@ -9,6 +9,7 @@ import {UserRoutes} from './components/user/user.routers';
 import {CollectionRouters} from './components/collection/collection.routers';
 import { ScribbleRoutes } from './components/scribble/scribble.routers';
 import checkPassport from './middleware/passport';
+import { LanguageRoutes } from './components/language/language.routers';
 
 class App {
   public app: express.Application;
@@ -16,18 +17,28 @@ class App {
   private userRoutes: UserRoutes;
   private collectionRoutes: CollectionRouters;
   private scribbleRoutes: ScribbleRoutes;
+  private languagesRoutes: LanguageRoutes;
 
-  constructor(app: express.Application, mongoURL: string, userRoutes: UserRoutes, collectionRoutes: CollectionRouters, scribbleRoutes: ScribbleRoutes) {
+  constructor(
+    app: express.Application, 
+    mongoURL: string, 
+    userRoutes: UserRoutes, 
+    collectionRoutes: CollectionRouters, 
+    scribbleRoutes: ScribbleRoutes,
+    languagesRoutes: LanguageRoutes
+    ) {
     
     this.app = app;
     this.mongoURL = mongoURL;
     this.userRoutes = userRoutes;
     this.collectionRoutes = collectionRoutes;
     this.scribbleRoutes = scribbleRoutes;
+    this.languagesRoutes = languagesRoutes;
     
     this.config(this.app);
     this.mongoSetup(mongoURL);
-    
+
+    // TODO: need refactor this if's
     if(userRoutes) {
       this.userRoutes.route(this.app);
     }
@@ -38,6 +49,10 @@ class App {
     
     if(scribbleRoutes) {
       this.scribbleRoutes.route(this.app);
+    }
+
+    if(languagesRoutes) {
+      this.languagesRoutes.route(this.app);
     }
 
   }
@@ -58,4 +73,4 @@ class App {
   }
 }
 
-export default new App(express(), process.env.DB_URL!, new UserRoutes, new CollectionRouters, new ScribbleRoutes).app;
+export default new App(express(), process.env.DB_URL!, new UserRoutes, new CollectionRouters, new ScribbleRoutes, new LanguageRoutes).app;

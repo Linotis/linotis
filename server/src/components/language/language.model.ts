@@ -1,4 +1,4 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose from "mongoose";
 import ILanguage from "./language.interface";
 
 const Schema = mongoose.Schema;

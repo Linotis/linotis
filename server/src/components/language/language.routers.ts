@@ -7,9 +7,15 @@ export class LanguageRoutes {
   private languageController: LanguageController = new LanguageController();
 
   public route(app: Application) {
-    app.post('/api/language/create', upload.single('image'), passport.authenticate('jwt', {session: false}), (req: Request, res: Response) => {
+
+    app.post('/api/language', upload.single('image'), passport.authenticate('jwt', {session: false}), (req: Request, res: Response) => {
       this.languageController.create(req, res);
     });
+
+    app.get('/api/languages', passport.authenticate('jwt', {session: false}), (req: Request, res: Response) => {
+      this.languageController.getAll(req, res);
+    });
+
     app.get('/api/language/:id', passport.authenticate('jwt', {session: false}), (req: Request, res: Response) => {
       this.languageController.getById(req, res);
     });
