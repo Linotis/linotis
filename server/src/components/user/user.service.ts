@@ -45,7 +45,7 @@ export default class UserService {
   
   public async getUserInfo(token) {
     const userDecodedData = await this.tokenDecode(token);
-    const user = await users.findById(userDecodedData?.payload.userId);
+    const user = await users.findById(userDecodedData?.payload.userId).populate('languages');
     return user;
   }
 

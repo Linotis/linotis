@@ -1,3 +1,5 @@
+import ILanguage from "components/language/language.interface";
+
 interface IUser {
   _id: string;
   email: string;
@@ -5,7 +7,8 @@ interface IUser {
   firstName: string;
   lastName: string;
   age: number;
-  role: string;  
+  role: string;
+  languages: Array<ILanguage>; 
 }
 
 export default IUser;

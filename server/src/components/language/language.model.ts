@@ -11,7 +11,12 @@ const languageSchema = new Schema({
   icon: {
     type: String,
     default: ''
-  }
+  },
+  collections: [{
+    ref: 'Collection',
+    default: '',
+    type: mongoose.Schema.Types.ObjectId
+  }]
 });
 
 export default mongoose.model<ILanguage & mongoose.Document>('Language', languageSchema);

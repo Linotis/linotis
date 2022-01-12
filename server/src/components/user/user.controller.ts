@@ -47,7 +47,8 @@ export default class UserController {
     const updatedData = {
       firstName: req.body.firstName,
       lastName: req.body.lastName,
-      age: req.body.age
+      age: req.body.age,
+      languages: req.body.languages
     }
     return this.userService.updateUserInfo(authorization, updatedData)
       .then(value => res.status(201).json(value))

@@ -26,8 +26,8 @@ export default class CollectionController {
   }
   
   async create(req: Request, res: Response) {
-    const{name} = req.body;
-    return this.collectionService.createCollection(name)
+    const{name, languageId} = req.body;
+    return this.collectionService.createCollection(name, languageId)
     .then(value => res.status(201).json(value))
     .catch((err) => res.status(500).json(err.message));
   }

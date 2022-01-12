@@ -8,7 +8,7 @@ export default class LanguageClass {
   }
 
   public async getLanguageById(id: string) {
-    const language = await Language.findById(id);
+    const language = await Language.findById(id).populate('collections');
     return language;
   }
 
