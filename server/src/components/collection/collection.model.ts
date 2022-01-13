@@ -11,7 +11,11 @@ const collectionSchema = new Schema({
   scribbles: [{
     ref: 'Scribble',
     type: mongoose.Schema.Types.ObjectId
-  }]
+  }],
+  languageId: {
+    ref: 'Language',
+    type: mongoose.Schema.Types.ObjectId
+  }
 });
 
 export default mongoose.model<ICollection & mongoose.Document>('Collection', collectionSchema);

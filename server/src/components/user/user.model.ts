@@ -28,7 +28,12 @@ const userSchema = new Schema({
   role: {
     type: String,
     default: 'student'
-  }
+  },
+  languages: [{
+    ref: 'Language',
+    default: '',
+    type: mongoose.Schema.Types.ObjectId
+  }]
 });
 
 export default mongoose.model<IUser & mongoose.Document>('users', userSchema);

@@ -1,4 +1,5 @@
 import collections from './collection.model';
+import Language from '../language/language.model'
 
 export default class CollectionService {
 
@@ -12,8 +13,12 @@ export default class CollectionService {
     return collection;
   }
 
-  public async createCollection(name: string) {
-    const collection = await collections.create({name: name});
+  public async createCollection(name: string, languageId: string) {
+    const collection = await collections.create({name: name, languageId: languageId});
+    await collection.save();
+    const languageById = await Language.findById(languageId);
+    languageById!.collections.push(collection);
+    await languageById!.save();
     return collection;
   }
 
