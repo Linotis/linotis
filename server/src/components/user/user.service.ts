@@ -6,7 +6,7 @@ import IUser from './user.interface';
 export default class UserService {
 
   private jwtSecret = process.env.JWT!;
-
+  
   public async createUser(userParams): Promise<Object> {
     const candidate = await users.findOne({email: userParams.email});
     
@@ -45,14 +45,14 @@ export default class UserService {
   
   public async getUserInfo(token) {
     const userDecodedData = await this.tokenDecode(token);
-    const user = await users.findById(userDecodedData?.payload.userId).populate('languages');
+    const user = await users.findById(userDecodedData?.payload['userId']).populate('languages');
     return user;
   }
 
   public async updateUserInfo(token, updated: object) {
     const userDecodedData = await this.tokenDecode(token);
     const user = await users.findOneAndUpdate(
-      {_id: userDecodedData?.payload.userId},
+      {_id: userDecodedData?.payload['userId']},
       {$set: updated},
       {new: true}
     )
