@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from 'src/app/data/service/user.service';
+import { UserService } from 'src/app/data/service/user/user.service';
 
 @Component({
   selector: 'app-home',
@@ -8,8 +8,8 @@ import { UserService } from 'src/app/data/service/user.service';
 })
 export class HomeComponent implements OnInit {
 
-  languageChoosen: boolean = false;
-  userLanguages!: any;
+  languageChoosen: boolean = true;
+  userLanguages: [] | undefined;
 
   constructor(private userService: UserService) { }
 
@@ -17,15 +17,10 @@ export class HomeComponent implements OnInit {
     this.userService.getInfo().subscribe(data => {
       this.userLanguages = data.languages;
 
-      if(this.userLanguages) {
-        this.languageChoosen = true;
+      if(this.userLanguages!.length == 0) {
+        this.languageChoosen = false;
         console.log(this.userLanguages);
       }
     });
   }
-
-  ngAfterInit() {
-
-  }
-
 }

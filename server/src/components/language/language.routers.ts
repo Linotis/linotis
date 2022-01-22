@@ -8,7 +8,7 @@ export class LanguageRoutes {
 
   public route(app: Application) {
 
-    app.post('/api/language', upload.single('image'), passport.authenticate('jwt', {session: false}), (req: Request, res: Response) => {
+    app.post('/api/language', upload.single('icon'), passport.authenticate('jwt', {session: false}), (req: Request, res: Response) => {
       this.languageController.create(req, res);
     });
 
@@ -19,7 +19,7 @@ export class LanguageRoutes {
     app.get('/api/language/:id', passport.authenticate('jwt', {session: false}), (req: Request, res: Response) => {
       this.languageController.getById(req, res);
     });
-    app.patch('/api/language/:id', upload.single('image'), passport.authenticate('jwt', {session: false}), (req: Request, res: Response) => {
+    app.patch('/api/language/:id', upload.single('icon'), passport.authenticate('jwt', {session: false}), (req: Request, res: Response) => {
       this.languageController.update(req, res);
     });
     app.delete('/api/language/:id', passport.authenticate('jwt', {session: false}), (req: Request, res: Response) => {

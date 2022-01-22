@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ILanguage } from 'src/app/data/interface/language.interface';
+import { LanguageService } from 'src/app/data/service/language/language.service';
 
 @Component({
   selector: 'app-language-selection',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LanguageSelectionComponent implements OnInit {
 
-  constructor() { }
+  languages: ILanguage[] = [];
+
+  constructor(private languageService: LanguageService) {}
 
   ngOnInit(): void {
+    this.languageService.getLanguages().subscribe( data => {
+      this.languages = data;
+    });
   }
 
 }
