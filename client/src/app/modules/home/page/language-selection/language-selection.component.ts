@@ -24,4 +24,8 @@ export class LanguageSelectionComponent implements OnInit {
     
   }
 
+  chooseLanguage(id: string) {
+    console.log(id);
+  }
+
 }

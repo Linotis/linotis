@@ -1,9 +1,16 @@
 <div class="languages">
+  <span>Please select language</span>
   <div class="languages__wrapper" *ngIf="languages$ | async as languages">
-    <a
+    <div *ngFor="let language of languages" >
+      <button (click)="chooseLanguage(language._id)">
+        <img [src]="language.icon" alt="">
+      </button>
+    </div>
+    <!-- <a
       *ngFor="let language of languages"
     >
       {{language.name}}
       <img [src]="language.icon" alt="">
-    </a>
+      <span>{{language._id}}</span>
+    </a> -->
   </div>
