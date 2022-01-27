@@ -1,6 +1,9 @@
-<p>language-selection works!</p>
 <div class="languages">
-  <div class="languages__wrapper">
-    
+  <div class="languages__wrapper" *ngIf="languages$ | async as languages">
+    <a
+      *ngFor="let language of languages"
+    >
+      {{language.name}}
+      <img [src]="language.icon" alt="">
+    </a>
   </div>
-</div>

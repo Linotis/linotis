@@ -64,6 +64,7 @@ class App {
     checkPassport(passport);
     app.use(cors());
     app.use(morgan('dev'));
+    app.use('/uploads', express.static('uploads'));
   };
 
   private mongoSetup(mondoURL: string): void {

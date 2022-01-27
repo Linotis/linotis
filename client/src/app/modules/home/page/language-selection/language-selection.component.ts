@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { ILanguage } from 'src/app/data/interface/language.interface';
 import { LanguageService } from 'src/app/data/service/language/language.service';
 
@@ -9,14 +10,18 @@ import { LanguageService } from 'src/app/data/service/language/language.service'
 })
 export class LanguageSelectionComponent implements OnInit {
 
-  languages: ILanguage[] = [];
-
+  //languages: ILanguage[] = [];
+  //languages: ILanguage[] = [];
+  langIcon = '';
+  languages$!: Observable<ILanguage[]>;
   constructor(private languageService: LanguageService) {}
 
   ngOnInit(): void {
-    this.languageService.getLanguages().subscribe( data => {
-      this.languages = data;
-    });
+    // this.languageService.getLanguages().subscribe( data => {
+    //   this.languages = data;
+    // });
+    this.languages$ = this.languageService.getLanguages();
+    
   }
 
 }
