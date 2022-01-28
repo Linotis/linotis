@@ -1,2 +1,8 @@
 <p>home works!</p>
-<app-language-selection *ngIf="!languageChoosen"></app-language-selection>
+<app-language-selection 
+  *ngIf="!languageChoosen" 
+  [userData]="userData" 
+  [languageChoosen]="languageChoosen"
+  (languageChange)="languageChange($event)"
+>
+</app-language-selection>

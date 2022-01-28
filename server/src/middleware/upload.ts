@@ -4,7 +4,7 @@ import { Callback } from 'mongoose';
 
 const storage = multer.diskStorage({
 	destination(req, file, cb: Callback) {
-		cb(null, 'src/uploads')
+		cb(null, 'uploads/')
 	},
 	filename(req, file, cb) {
 		const date = moment().format('DDMMYYYY-HHmmss_SSS');
