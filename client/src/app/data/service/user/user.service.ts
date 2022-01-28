@@ -6,11 +6,20 @@ import { IUser } from '../../interface/user.interface';
 @Injectable({
   providedIn: 'root'
 })
+
 export class UserService {
 
   constructor(private http: HttpClient) {}
 
   getInfo(): Observable<IUser> {
     return this.http.get<IUser>('/api/user');
+  }
+
+  updateUserLanguages(languages: Array<object>): Observable<IUser> {
+    let body = {
+      "languages": languages
+    }
+    console.log(body);
+    return this.http.patch<IUser>('/api/user', body);
   }
 }
