@@ -1,3 +1,59 @@
-.languages__wrapper {
+@import '../../../../../styles/variables';
+
+.languages {
   display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: $basic-bg-color;
+
+  &__title {
+    font-size: 36px;
+    font-weight: bold;
+  }
+
+  &__wrapper {
+    display: flex;
+    justify-content: center;
+    padding-top: 80px;
+  }
+
+  &__group {
+    display: flex;
+  }
+}
+
+.language {
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    background-color: $basic-bg-color;
+    border: 1px solid $button-border-third;
+    border-radius: 20px;
+    padding: 36px 78px 60px 78px;
+
+    &:hover {
+      opacity: 0.3;
+    }
+
+    &--inactive {
+      background: $input-text-placeholder;
+      pointer-events: none;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+    
+  }
+
+  &__name {
+    font-size: 18px;
+    padding-top: 30px;
+  }
+}
+
+.language__wrapper + .language__wrapper {
+  margin-left: 60px;
 }

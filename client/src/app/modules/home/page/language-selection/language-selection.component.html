@@ -1,10 +1,13 @@
 <div class="languages">
-  <span>Please select language</span>
+  <span class="languages__title">Please select language for learning</span>
   <div class="languages__wrapper" *ngIf="languages$ | async as languages">
-    <div *ngFor="let language of languages" >
-      <button (click)="chooseLanguage(language._id)">
-        <img [src]="language.icon" alt="">
-      </button>
+    <div class="languages__group">
+      <div class="language__wrapper" *ngFor="let language of languages" >
+        <button class="language__item" [ngClass]="{'language__item--inactive': language.collections.length === 0}"  (click)="chooseLanguage(language._id)">
+          <img class="" [src]="language.icon" alt="">
+          <span class="language__name">{{language.name}}</span>
+        </button>
+      </div>
     </div>
   </div>
 </div>
