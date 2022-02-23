@@ -33,7 +33,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"email\": \"demo@demo28.com\",\n    \"password\": \"demodemo28\",\n    \"firstName\": \"A\",\n    \"lastName\": \"S\",\n    \"age\": 33\n}",
+					"raw": "{\n    \"email\": \"demo@demo29.com\",\n    \"password\": \"demodemo29\",\n    \"firstName\": \"A\",\n    \"lastName\": \"S\",\n    \"age\": 33\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -186,7 +186,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"email\": \"{{email}}\",\n    \"password\": \"{{password}}\"\n}",
+					"raw": "{\n    \"languages\": [\n        \n    ]\n}",
 					"options": {
 						"raw": {
 							"language": "json"
