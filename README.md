@@ -14,3 +14,6 @@ A more detailed explanation of the client part of the application is given in th
 A description of the current API can be found here:
 
 [Linotis REST API docs](https://github.com/Linotis/linotis-rest-api-docs#readme)
+
+## License
+This software is licensed under BSD 3-Clause. See the [LICENSE.md](https://github.com/Linotis/linotis/blob/main/LICENSE.md) file for more information.
